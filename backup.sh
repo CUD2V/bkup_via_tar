@@ -3,13 +3,16 @@
 today=$(date +%Y-%m-%d)
 yesterday=$(date -d "-1 day" +%Y-%m-%d)
 
-archive=$(hostname)-$today.tar.gz
-metadata=$(hostname)-$today.metadata
+bkup_path=/media/data_mount/backup/$(hostname)_backup
+
+archive=$bkup_path/$(hostname)-$today.tar.gz
+oldmetadata=$bkup_path/$(hostname)-$yesterday.metadata
+newmetadata=$bkup_path/$(hostname)-$today.metadata
 
 
 if [ "$(date +%A)" != "Sunday" ]; then
-  if test -f "$(hostname)-$yesterday.metadata"; then
-    cp $(hostname)-$yesterday.metadata $metadata
+  if test -f "$oldmetadata"; then
+    cp $oldmetadata $newmetadata
   fi
 fi
 
@@ -21,6 +24,6 @@ tar \
   --xattrs \
   --gzip \
   --file=$archive \
-  --listed-incremental=$metadata \
+  --listed-incremental=$newmetadata \
   /
 
