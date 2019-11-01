@@ -1,0 +1,12 @@
+/home/.+/.ssh
+/home/.+/.gnupg
+/home/.+/\.cache
+/dev
+/proc
+/sys
+/tmp
+/run
+/mnt
+/media
+/lost+found
+swap.img
