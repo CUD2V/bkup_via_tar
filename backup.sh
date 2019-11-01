@@ -6,14 +6,11 @@ yesterday=$(date -d "-1 day" +%Y-%m-%d)
 archive=$(hostname)-$today.tar.gz
 metadata=$(hostname)-$today.metadata
 
-if test -f "$(hostname)-$yesterday.metadata"; then
-  cp $(hostname)-$yesterday.metadata $metadata
-fi
 
-if [ "$(date +%A)" == "Sundary" ]; then
-  level=0
-else
-  level=1
+if [ "$(date +%A)" != "Sunday" ]; then
+  if test -f "$(hostname)-$yesterday.metadata"; then
+    cp $(hostname)-$yesterday.metadata $metadata
+  fi
 fi
 
 tar \
@@ -25,12 +22,5 @@ tar \
   --gzip \
   --file=$archive \
   --listed-incremental=$metadata \
-  --level=$level \
-  ../Biostatistics
+  /
 
-
-
-#archive2=$(hostname)-$today-2.tar.gz
-#metadata2=$(hostname)-$today-2.metadata
-#cp $metadata $metadata2
-#tar --create --file=$archive2 --listed-incremental=$metadata2 ../Biostatistics
