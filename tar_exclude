@@ -11,3 +11,4 @@
 /lost+found
 swap.img
 /var/opt/gitlab
+/var/run
