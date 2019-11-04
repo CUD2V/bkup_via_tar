@@ -17,7 +17,7 @@ if [ "$(date +%A)" != "Sunday" ]; then
 fi
 
 tar \
-  --exclude-from tar_exclude \
+  --exclude-from=tar_exclude \
   --exclude-tag-under=.exclude-under-from-tar-dump \
   --create \
   --preserve-permissions \
