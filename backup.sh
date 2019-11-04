@@ -9,6 +9,11 @@ archive=$bkup_path/$(hostname)-$today.tar.gz
 oldmetadata=$bkup_path/$(hostname)-$yesterday.metadata
 newmetadata=$bkup_path/$(hostname)-$today.metadata
 
+logfile=$bkup_path/$(hostname)-$today.log
+exec 1>$logfile
+exec 2>&1
+
+echo $(date)
 
 if [ "$(date +%A)" != "Sunday" ]; then
   if test -f "$oldmetadata"; then
@@ -27,3 +32,4 @@ tar \
   --listed-incremental=$newmetadata \
   /
 
+echo $(date)
