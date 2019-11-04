@@ -10,3 +10,4 @@
 /media
 /lost+found
 swap.img
+/var/opt/gitlab
