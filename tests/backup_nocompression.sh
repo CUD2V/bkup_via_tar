@@ -3,14 +3,14 @@
 today=$(date +%Y-%m-%d)
 yesterday=$(date -d "-1 day" +%Y-%m-%d)
 
-bkup_path=/root/backup/$(hostname)_backup
+bkup_path=/media/data_mount/backup/$(hostname)_backup/nocompression
 mkdir -p $bkup_path
 
-archive=$bkup_path/$(hostname)-$today.tar.gz
+archive=$bkup_path/$(hostname)-$today.tar
 oldmetadata=$bkup_path/$(hostname)-$yesterday.metadata
 newmetadata=$bkup_path/$(hostname)-$today.metadata
 
-logfile=$bkup_path/$(hostname)-$today.log
+logfile=$bkup_path/$(hostname)-$today-nocompression.log
 exec 1>$logfile
 exec 2>&1
 
@@ -28,11 +28,10 @@ tar \
   --create \
   --preserve-permissions \
   --xattrs \
-  --gzip \
   --file=$archive \
   --listed-incremental=$newmetadata \
   --one-file-system \
   --ignore-failed-read \
-  /
+  /home
 
 echo $(date)
