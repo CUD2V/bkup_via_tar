@@ -9,6 +9,14 @@ The objective:
 
 Script will be expected to work on two similar yet independent systems.
 
+## Cron configuration
+
+```
+# m h  dom mon dow   command
+0 3 * * * cd /root/bkup_via_tar; /root/bkup_via_tar/backup.sh 2>&1 >> /media/data_mount/backup/skylark_backup/logs/`date +\%Y\%m\%d\%H\%M\%S`-tar-cron.log 2>&1
+root@skylark:~/backup/skylark_backup#
+```
+
 ## Notes
 One of the options for users to exclude data from the backup process is to add
 the a file named `.exclude-under-from-tar-dump`.
@@ -33,4 +41,5 @@ The resulting structure in the archive will be:
     adir/afile
     adir/bfile
 
-Note that the subdir path is archived, but non of the files are.
+Note that the subdir path is archived, but none of the files are.
+
