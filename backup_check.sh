@@ -36,7 +36,9 @@ then
 fi
 
 # due to recent issues with SMB mounted storage location, verify that copy worked
+echo "Creating sha256 sum for $archive"
 file1sha=(`shasum -a 256 $archive`)
+echo "Creating sha256 sum for $archivedest"
 file2sha=(`shasum -a 256 $archivedest`)
 
 if [[ "$file1sha" == "$file2sha" && "$file1sha" != "" ]]
