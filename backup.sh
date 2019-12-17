@@ -42,6 +42,7 @@ tar \
   --ignore-failed-read \
   /
 
+echo "Attempting to copy $archive to $archivedest"
 cp $archive $archivedest
 cp $newmetadata $dest_path
 cp -rp $bkup_path/*.log $dest_path

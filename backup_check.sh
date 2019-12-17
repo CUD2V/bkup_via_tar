@@ -29,7 +29,7 @@ fi
 
 if [[ "$1" == 'copy' ]]
 then
-    echo "Attempting to copy files to $dest_path"
+    echo "Attempting to copy $archive to $archivedest"
     cp $archive $archivedest
     cp $newmetadata $dest_path
     cp -rp $bkup_path/*.log $dest_path
