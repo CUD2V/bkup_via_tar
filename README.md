@@ -1,4 +1,5 @@
 # bkup_via_tar
+
 Bash script and supporting files for backing up an Ubuntu Server using tar.
 
 The objective:
@@ -18,6 +19,7 @@ root@skylark:~/backup/skylark_backup#
 ```
 
 ## Notes
+
 One of the options for users to exclude data from the backup process is to add
 the a file named `.exclude-under-from-tar-dump`.
 
@@ -43,3 +45,6 @@ The resulting structure in the archive will be:
 
 Note that the subdir path is archived, but none of the files are.
 
+### In Case of Error
+
+Due to issues with the backup location, the copy of the large tar file often will fail. The script `backup_check.sh` will optionally re-attempt to copy the file as well as perform the sha256 validation. If the sha256 matches, the files will be removed from the local disk.
