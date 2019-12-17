@@ -21,7 +21,7 @@ exec 2>&1
 
 echo $(date)
 
-if [[ $# > 1 || "$1" != 'copy' ]]
+if [[ $# > 1 || ( $# -eq 1 && "$1" != 'copy' ) ]]
 then
     echo "Script accepts only 1 optional argument: $0 [copy]"
     exit 2
@@ -39,16 +39,16 @@ fi
 file1sha=(`shasum -a 256 $archive`)
 file2sha=(`shasum -a 256 $archivedest`)
 
-if [ "$file1sha" == "$file2sha" ]
+if [[ "$file1sha" == "$file2sha" && "$file1sha" != "" ]]
 then
     echo "Local and Remote files have the same content - removing local"
-    echo $archivedest $file1sha
+    echo "$archivedest has sha256: $file1sha"
     rm $archive
     rm $newmetadata
 else
-    echo "Files are NOT the same"
-    echo $archive $file1sha
-    echo $archivedest $file2sha
+    echo "Files are NOT the same or cannot calculate sha256"
+    echo "$archive has sha256: $file1sha"
+    echo "$archivedest has sha256: $file2sha"
 fi
 
 echo $(date)
