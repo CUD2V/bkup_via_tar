@@ -45,7 +45,7 @@ tar \
 echo "Attempting to copy $archive to $archivedest"
 cp $archive $archivedest
 cp $newmetadata $dest_path
-cp -rp $bkup_path/*.log $dest_path
+cp -rp $bkup_path/*.log $dest_path/logs
 
 # due to recent issues with SMB mounted storage location, verify that copy worked
 echo "Creating sha256 sum for $archive"
